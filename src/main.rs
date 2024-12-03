@@ -3,6 +3,7 @@ mod day_1;
 use std::env;
 use std::fs::File;
 use std::io::{self, Read};
+use std::time::Instant;
 
 fn main() -> io::Result<()> {
     // Collect the command-line arguments
@@ -25,8 +26,17 @@ fn main() -> io::Result<()> {
     // Match the day number and run the corresponding module
     match day_input.as_str() {
         "day_1" => {
-            println!("Day_1 part 1 solution: {}", day_1::run_part_1(contents.clone()));
-            println!("Day_2 part 2 solution: {}", day_1::run_part_2(contents.clone()));
+            let start = Instant::now();
+            let part_1_solution = day_1::run_part_1(contents.clone());
+            let duration = start.elapsed();
+            println!("Day_1 part 1 solution: {}", part_1_solution);
+            println!("Execution time: {:?}", duration);
+
+            let start = Instant::now();
+            let part_2_solution = day_1::run_part_2(contents.clone());
+            let duration = start.elapsed();
+            println!("Day_1 part 2 solution: {}", part_2_solution);
+            println!("Execution time: {:?}", duration);
         }
         // Add more cases as needed
         _ => {
